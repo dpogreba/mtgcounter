@@ -1,0 +1,59 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ "claude/mtg-life-counter-apk-9b3i4e" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mtg-life-counter
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v1.0.0
+          name: "MTG Life Counter v1.0.0"
+          body: |
+            ## MTG Life Counter - Android APK
+
+            A simple Magic: The Gathering life counter for Android.
+
+            ### Features
+            - 2-player life tracking
+            - +1/-1 and +5/-5 buttons
+            - Multiple format support (Standard 20, Commander 40, Vanguard 25, Two-Headed Giant 30)
+            - Player 2 panel rotated for face-to-face play
+            - Visual indicators when life is low (<=5) or at 0
+            - Screen stays on during use
+
+            ### Install
+            Download the APK below and install on your Android device.
+          files: app/build/outputs/apk/debug/app-debug.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1a1a2e">
+
+    <!-- Player 2 (top, rotated 180° so they can read from across the table) -->
+    <LinearLayout
+        android:id="@+id/player2_panel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:rotation="180"
+        android:background="@drawable/panel_player2"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_2"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/player2_life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textColor="#FFFFFF"
+            android:textSize="96sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/player2_minus5"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/minus_5"
+                android:backgroundTint="#c0392b" />
+
+            <Button
+                android:id="@+id/player2_minus"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/minus_1"
+                android:backgroundTint="#e74c3c" />
+
+            <Button
+                android:id="@+id/player2_plus"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/plus_1"
+                android:backgroundTint="#27ae60" />
+
+            <Button
+                android:id="@+id/player2_plus5"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/plus_5"
+                android:backgroundTint="#1e8449" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Center controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        android:background="#0f0f23">
+
+        <Button
+            android:id="@+id/reset_button"
+            style="@style/ControlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/reset"
+            android:backgroundTint="#7f8c8d" />
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="1dp" />
+
+        <Button
+            android:id="@+id/starting_life_button"
+            style="@style/ControlButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/format"
+            android:backgroundTint="#8e44ad" />
+    </LinearLayout>
+
+    <!-- Player 1 (bottom) -->
+    <LinearLayout
+        android:id="@+id/player1_panel"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/panel_player1"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/player_1"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-medium" />
+
+        <TextView
+            android:id="@+id/player1_life"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:textColor="#FFFFFF"
+            android:textSize="96sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-condensed" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/player1_minus5"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/minus_5"
+                android:backgroundTint="#c0392b" />
+
+            <Button
+                android:id="@+id/player1_minus"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/minus_1"
+                android:backgroundTint="#e74c3c" />
+
+            <Button
+                android:id="@+id/player1_plus"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/plus_1"
+                android:backgroundTint="#27ae60" />
+
+            <Button
+                android:id="@+id/player1_plus5"
+                style="@style/LifeButton"
+                android:layout_width="72dp"
+                android:layout_height="48dp"
+                android:text="@string/plus_5"
+                android:backgroundTint="#1e8449" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
