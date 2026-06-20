@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "claude/mtg-life-counter-apk-9b3i4e" ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
