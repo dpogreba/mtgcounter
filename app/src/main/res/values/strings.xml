@@ -9,4 +9,6 @@
     <string name="minus_5">-5</string>
     <string name="reset">Reset</string>
     <string name="format">Format</string>
+    <string name="one_player">1P</string>
+    <string name="two_players">2P</string>
 </resources>

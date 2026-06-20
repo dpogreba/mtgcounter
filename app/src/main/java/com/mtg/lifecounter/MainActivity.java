@@ -11,15 +11,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int DEFAULT_LIFE = 20;
+    private int startingLife = 20;
+    private boolean singlePlayer = false;
 
-    private int player1Life = DEFAULT_LIFE;
-    private int player2Life = DEFAULT_LIFE;
+    private int player1Life = 20;
+    private int player2Life = 20;
 
     private TextView player1LifeText;
     private TextView player2LifeText;
     private View player1Panel;
     private View player2Panel;
+    private Button playersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button resetButton = findViewById(R.id.reset_button);
         Button startingLifeButton = findViewById(R.id.starting_life_button);
+        playersButton = findViewById(R.id.players_button);
 
         p1Plus.setOnClickListener(v -> updateLife(1, 1));
         p1Minus.setOnClickListener(v -> updateLife(1, -1));
@@ -57,8 +60,25 @@ public class MainActivity extends AppCompatActivity {
 
         resetButton.setOnClickListener(v -> resetLife());
         startingLifeButton.setOnClickListener(v -> showStartingLifeDialog());
+        playersButton.setOnClickListener(v -> togglePlayerMode());
 
         updateDisplay();
+    }
+
+    private void togglePlayerMode() {
+        singlePlayer = !singlePlayer;
+        resetLife();
+        updatePlayerMode();
+    }
+
+    private void updatePlayerMode() {
+        if (singlePlayer) {
+            player2Panel.setVisibility(View.GONE);
+            playersButton.setText(R.string.one_player);
+        } else {
+            player2Panel.setVisibility(View.VISIBLE);
+            playersButton.setText(R.string.two_players);
+        }
     }
 
     private void updateLife(int player, int amount) {
@@ -71,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resetLife() {
-        player1Life = DEFAULT_LIFE;
-        player2Life = DEFAULT_LIFE;
+        player1Life = startingLife;
+        player2Life = startingLife;
         updateDisplay();
     }
 
@@ -83,8 +103,9 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(this)
                 .setTitle("Starting Life Total")
                 .setItems(options, (dialog, which) -> {
-                    player1Life = values[which];
-                    player2Life = values[which];
+                    startingLife = values[which];
+                    player1Life = startingLife;
+                    player2Life = startingLife;
                     updateDisplay();
                 })
                 .show();
